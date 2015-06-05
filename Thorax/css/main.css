@@ -1,6 +1,6 @@
 body
 {
-    background-image: url(../imgs/star.jpg);
+    background-image: url(../imgs/plant.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -18,7 +18,7 @@ body
 .card.todo
 {
     min-height: 64px;
-    width:100%;
+    width: 100%;
     background-color: rgba(255,255,255,0.8)
 }
 
@@ -30,17 +30,17 @@ body
 .card.todo .content > .header
 {
     word-wrap: break-word;
-    width: 90%;
+    width: 75%;
 }
 
 .card.todo .content > .input 
 {
-    width: 90%;
+    width: 75%;
 }
 
 .card.todo .content > .checkbox 
 {
-    margin-top: 0.5%;
+    margin-top: 5px;
 }
 .card.todo .content > .input > input 
 {
@@ -54,7 +54,7 @@ body
   height: 1px;
   background: #000;
   content: "";
-  width: 90%;
+  width: 75%;
   display: block;
 }
 
