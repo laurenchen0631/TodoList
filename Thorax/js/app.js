@@ -33,7 +33,7 @@ var view;
                 '</div>',
             '</div>',
         
-            '<div class="ui horizontal inverted divider">',
+            '<div class="ui horizontal divider">',
                 'Todo List',
             '</div>',
 
