@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "P:/Program Source/Web/TodoList/Thorax/js/libs/jquery/test/unit/deprecated.js",
+        "P:/Program Source/Web/TodoList/Thorax/js/libs/underscore/test/vendor/runner.js",
+        "P:/Program Source/Web/TodoList/Thorax/js/views/todo-item.js"
+    ]
+}

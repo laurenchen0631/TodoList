@@ -23,7 +23,7 @@ var view;
                 '</div>',
                 '<div class="column">',
                     '<div class="ui negative button" id="completedBtn" tabindex="0">',
-                        'Completed',
+                        'Done',
                     '</div>',
                 '</div>',
                 '<div class="column">',
@@ -52,6 +52,7 @@ var view;
                         '</div>',
                     '</div>',
             '{{/collection}}',
+        
         '</div>'].join('');
 
     // Kick things off by creating the **App**.
