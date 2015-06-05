@@ -1,0 +1,10 @@
+{
+    "jscodehints.detectedExclusions": [
+        "P:/Program Source/Web/Backbone/Todo/js/libs/underscore/test/utility.js",
+        "P:/Program Source/Web/Backbone/Todo/js/libs/underscore/test/vendor/runner.js",
+        "P:/Program Source/Web/Backbone/Todo/js/app.js",
+        "P:/Program Source/Web/Backbone/Todo/js/models/todo.js",
+        "P:/Program Source/Web/Backbone/Todo/js/collections/todos.js",
+        "P:/Program Source/Web/Backbone/Todo/js/libs/underscore/test/vendor/qunit.js"
+    ]
+}

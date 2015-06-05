@@ -1,0 +1,81 @@
+body
+{
+    background-image: url(../imgs/star.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#main-container
+{
+    margin-top: 10px;
+}
+
+.equal.width.grid .button{
+    width: 100%;
+}
+
+.card.todo
+{
+    min-height: 64px;
+    width:100%;
+    background-color: rgba(255,255,255,0.8)
+}
+
+.card.todo .content 
+{
+    padding-top: 20px;
+}
+
+.card.todo .content > .header
+{
+    word-wrap: break-word;
+    width: 90%;
+}
+
+.card.todo .content > .input 
+{
+    width: 90%;
+}
+
+.card.todo .content > .checkbox 
+{
+    margin-top: 0.5%;
+}
+.card.todo .content > .input > input 
+{
+    width:100%;
+}
+
+.completed:after{
+  position: absolute;
+  left: 1%;
+  top: 50%;
+  height: 1px;
+  background: #000;
+  content: "";
+  width: 90%;
+  display: block;
+}
+
+.card.todo > .content > .input
+{
+    display: none;
+}
+
+.card.todo > .content > .input.editing
+{
+    position: absolute;
+/*    height: 55%;*/
+    top: 15px;
+    left:1%;
+    display: flex;
+}
+
+.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
