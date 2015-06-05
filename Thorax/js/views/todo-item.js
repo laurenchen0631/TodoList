@@ -38,11 +38,13 @@
 
         // Close the "editing" mode, saving changes to the todo.
         close: function () {
+            console.log("Try to close")
             var value = this.$('.edit').val().trim();
             if (value !== '')
                 this.model.changeName(value);
 
-            this.$el.removeClass('editing');
+            this.$('.editBlock').removeClass('editing');
+            $('.ui.checkbox').checkbox();
         },
 
         // Hit enter, then close editing the item.

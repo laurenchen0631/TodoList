@@ -1,3 +1,11 @@
+body
+{
+    background-image: url(../imgs/star.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 #main-container
 {
     margin-top: 10px;
@@ -11,6 +19,7 @@
 {
     min-height: 64px;
     width:100%;
+    background-color: rgba(255,255,255,0.8)
 }
 
 .card.todo .content 
@@ -57,8 +66,9 @@
 .card.todo > .content > .input.editing
 {
     position: absolute;
-    height: 55%;
+/*    height: 55%;*/
     top: 15px;
+    left:1%;
     display: flex;
 }
 
