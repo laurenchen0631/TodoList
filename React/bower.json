@@ -1,0 +1,22 @@
+{
+  "name": "ExchangeWorld",
+  "version": "0.1.0",
+  "homepage": "https://github.com/SSARCandy/ExchangeWorld",
+  "authors": [
+    "Xhriman <seal789ie@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "directory": "src/bower_components",
+  "dependencies": {
+    "react": "~0.13.3",
+    "amazeui-react": "~1.0.0-beta1"
+  }
+}
