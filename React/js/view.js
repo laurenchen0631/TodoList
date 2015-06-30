@@ -1,28 +1,82 @@
-'use strict';
+"use strict";
 
-var data = [{"name": "1", "isChecked": true}];
+var TODOS = [{"name": "1", "Done": true}];
+
+var Todo = React.createClass({
+  handleChange: function() {
+     this.props.toggle(this.props.index);
+  },
+  render: function() {
+    return (
+      <div className="todo">
+        <input
+            type="checkbox"
+            checked={this.props.completed}
+            onChange={this.handleChange}
+            ref="completedInput"
+        />
+        {this.props.name}
+      </div>
+    );
+  }
+});
+
+var TodoList = React.createClass({
+    render: function () {
+        var todoNodes = this.props.data.map(function (todo, index) {
+          return (
+            <Todo
+              name={todo.name}
+              completed={todo.Done}
+              toggle={this.props.toggle}
+              index={index}
+            />
+          );
+        }.bind(this));
+
+        return (
+			<div className="todoList">
+                {todoNodes}
+            </div>
+        );
+    }
+});
 
 //We pass some methods in a JavaScript object to React.createClass() to create a new React component.
-var ItemBox = React.createClass({
+var TodoListForm = React.createClass({
+    handleSubmit: function(e) {
+        e.preventDefault();
+        var name = this.refs.name.getDOMNode().value.trim();
+        if (!name) return;
+        this.refs.name.getDOMNode().value = '';
+
+       	//send new item to item manager --> TodoBox
+        this.props.onSubmit({name: name, Done: false});
+    },
+    render: function () {
+        return (
+          <form className="TodoListForm" onSubmit={this.handleSubmit} >
+              <input type="text" placeholder="Item name" ref="name"/>
+              <input type="submit" value="Post" />
+          </form>
+        );
+    }
+});
+
+var TodoBox = React.createClass({
     handleCommentSubmit: function (item) {
         var items = this.state.data;
         items.push(item);
         this.setState({data: items});
-		//tis.state.data;.push(item)';
-        //console.log(this.state.data);
     },
-	toggle: function (itemToToggle) {
-		console.log("Item " + itemToToggle + " toggle event");
-		var items = this.state.data;
-		
-		items[itemToToggle].isChecked = !(items[itemToToggle].isChecked);
-		console.log(items[itemToToggle].name + "is toggled to " + items[itemToToggle].isChecked);
-		
-		this.setState({
-			data: items
-		});
-		console.log(this.state.data);
-	},
+	toggle: function (index) {
+    		var todos = this.state.data;
+    		todos[index].Done = !todos[index].Done;
+
+    		this.setState({
+    			data: todos
+    		}, console.log(this.state.data));
+    },
     getInitialState: function() {
         return {data: []};
     },
@@ -31,76 +85,16 @@ var ItemBox = React.createClass({
         this.setState({data: this.props.data});
     },
     render: function () {
-        return ( 
-            <div className = "itemBox">
-                <h1>Todo List</h1>
-                <ItemForm onSubmit={this.handleCommentSubmit}/>
-								<ItemList data={this.state.data} checkChange={this.toggle}/>
+        return (
+            <div className="todoBox">
+                <header>Todo List</header>
+                <TodoListForm onSubmit={this.handleCommentSubmit} />
+				<TodoList data={this.state.data} toggle={this.toggle}/>
             </div>
         );
     }
 });
 
-var ItemForm = React.createClass({
-    handleSubmit: function(e) {
-        e.preventDefault();
-        var name = React.findDOMNode(this.refs.name).value.trim();
-        if (!name) return;
-        React.findDOMNode(this.refs.name).value = '';
-		
-       	//send new item to item manager --> ItemBox
-        this.props.onSubmit({name: name, isChecked: false});
-        return;
-    },
-    render: function () {
-        return ( 
-          <form className="itemForm" onSubmit={this.handleSubmit} >
-              <input type="text" placeholder="Item name" ref="name"/>
-              <input type="submit" value="Post" />
-          </form>
-        );
-    }
-});
-
-
-var ItemList = React.createClass({
-    render: function () {
-				var self = this;
-				
-        var itemNodes = this.props.data.map(function (item, index) {
-          return (
-            <Item name={item.name} isChecked={item.isChecked} onToggle={self.props.checkChange} index={index} />
-          );
-        });
-        
-        return ( 
-						<div className = "itemList">
-                {itemNodes}
-            </div>
-        );
-    }
-});
-
-
-var Item = React.createClass({
-	toggle: function (e){
-		e.preventDefault();
-		//console.log("item toggle");
-		this.props.onToggle(this.props.index);
-		
-		return;
-	},
-  render: function() {
-    return (
-      <div className="item">
-				<input className="toggle" type="checkbox" 
-            checked={this.props.isChecked} onChange={this.toggle}/>
-        {this.props.name}
-      </div>
-    );
-  }
-});
-
-React.render( <ItemBox data={data}/>,
+React.render( <TodoBox data={TODOS}/>,
     document.getElementById('content')
 );
