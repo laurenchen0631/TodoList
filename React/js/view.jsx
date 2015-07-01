@@ -24,6 +24,7 @@ var Todo = React.createClass({
 var TodoList = React.createClass({
     render: function () {
         var todoNodes = this.props.data.map(function (todo, index) {
+          if(todo.Done == true && this.props.filter == "Active" || todo.Done == false && this.props.filter == "Done") return;
           return (
             <Todo
               name={todo.name}
@@ -35,7 +36,7 @@ var TodoList = React.createClass({
         }.bind(this));
 
         return (
-			<div className="todoList">
+			      <div className="todoList">
                 {todoNodes}
             </div>
         );
@@ -63,22 +64,42 @@ var TodoListForm = React.createClass({
     }
 });
 
+var TodoFilter = React.createClass({
+  setFilter: function(newfilter)
+  {
+      this.props.handleFilter(newfilter.target.id);
+  },
+  render: function()
+  {
+    return (
+      <div className="todoFilter">
+        <button onClick={this.setFilter} id="All">All</button>
+        <button onClick={this.setFilter} id="Done">Done</button>
+        <button onClick={this.setFilter} id="Active">Active</button>
+      </div>
+    )
+  }
+});
+
 var TodoBox = React.createClass({
-    handleCommentSubmit: function (item) {
-        var items = this.state.data;
-        items.push(item);
-        this.setState({data: items});
+    handleCommentSubmit: function (todo) {
+        var todos = this.state.data;
+        todos.push(todo);
+        this.setState({data: todos});
     },
-	toggle: function (index) {
+    handleFilter: function (filter) {
+       this.setState({filterText: filter});
+    },
+	  toggle: function (index) {
     		var todos = this.state.data;
     		todos[index].Done = !todos[index].Done;
 
     		this.setState({
     			data: todos
-    		}, console.log(this.state.data));
+    		});
     },
     getInitialState: function() {
-        return {data: []};
+        return {filterText: 'All', data: []};
     },
     //render which returns a tree of React components that will eventually render to HTML.
     componentDidMount: function () {
@@ -89,7 +110,8 @@ var TodoBox = React.createClass({
             <div className="todoBox">
                 <header>Todo List</header>
                 <TodoListForm onSubmit={this.handleCommentSubmit} />
-				<TodoList data={this.state.data} toggle={this.toggle}/>
+								<TodoFilter handleFilter={this.handleFilter} />
+								<TodoList data={this.state.data} filter={this.state.filterText} toggle={this.toggle}/>
             </div>
         );
     }
